@@ -1,0 +1,62 @@
+class Pet:
+    nivel_max_energia = 100
+    def __init__(self, nome, raca, idade, energia=100):
+        self.nome = nome
+        self.raca = raca
+        self.idade = int(idade)
+        self.energia = energia
+    @property
+    def status_energia(self):
+        if self.energia > 70:
+            return "Ativo! 🚀"
+        elif self.energia > 30:
+            return "Cansado. 🥱"
+        else:
+            return "Exausto! 😴"
+
+    def __repr__(self):
+        return f"<Pet:{self.nome} - Raça: {self.raca} - Idade: {self.idade} - Energia: {self.energia}"
+    def brincar(self, tempo_minutos):
+        perda_de_energia = tempo_minutos * 1
+        self.energia -= perda_de_energia
+        if self.energia < 50 and self.energia > 25:
+            print("Seu pet esta ficando cansado !")
+        elif self.energia <= 0:
+            print("Seu pet esta exausto 😿🐕‍🦺!!")
+        if self.raca == 'gato':
+            print('_' * 50)
+            print(f"NOME: {self.nome}😾\nStamina: {self.energia}")
+            pass
+        if self.raca == 'cachorro':
+            print('_' * 50)
+            print(f"NOME: {self.nome}🐕\nStamina: {self.energia}")
+            pass
+        
+        
+
+
+    def apresentar(self):
+        print(f"O {self.nome} é um {self.raca} de {self.idade} anos ")
+
+    def desafiar_pet(self, pet_desafiado, corrida):
+
+        print(f'{self.nome} desafiou {pet_desafiado.nome} !!')
+        self.energia -= 10
+        pet_desafiado.brincar(corrida)
+        print(f'''
+            STAMINA |{self.nome} || {self.energia} ⚡
+                    |{pet_desafiado.nome} || {pet_desafiado.energia} ⚡
+            ''')
+        
+        
+
+pet1 = Pet('Pitchula', 'Cachorro', 4)
+pet2 = Pet('Laika', 'Cachorro', 2)
+
+
+print(pet1)
+
+pet1.desafiar_pet(pet2, 40)
+
+print(f"Status da Pitchula: {pet1.status_energia}") 
+print(f"Status da Laika: {pet2.status_energia}")
